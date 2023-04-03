@@ -1,34 +1,43 @@
-# import math
+import os,urllib.request,time
 
-# def is_prime(n): 
-#     if n == 2: return True 
-#     if n == 0 or n == 1 or n % 2 == 0:
-#         return False 
-#     for i in range(3, int(math.sqrt(n))+1, 2): 
-#         if n % i == 0: 
-#             return False 
-#     return True
+class dailog(object):
+    def __init__(self,num):
+        super(dailog, self).__init__()
+        self.num = num
+    def check(self):
+        num=self.num
+        num1=0
+        url=['https://blog.csdn.net/m0_46345373/article/details/119837536']
+        res=[]
+        while True:
+            for x in url:
+                try:
+                    s=urllib.request.urlopen(x)
+                    res.append(s)
+                #使用urllib2模块的urlopen函数来打开网页，
+                # 并将结果添加到res列表中。这段代码的含义是打开这3个网页，
+                # 并将它们的响应对象保存到一个列表中。
 
-# op = int(input()) 
-# if op >= 2: 
-#     print(2, end="|") 
-#     for i in range(3, op+1, 2): 
-#         if is_prime(i): 
-#             print(i, end="|")
-def euler_sieve(n):
-    is_prime = [True] * (n+1)
-    primes = []
-    for i in range(2, n+1):
-        if is_prime[i]:
-            primes.append(i)
-        for j in range(len(primes)):
-            if i * primes[j] > n:
-                break
-            is_prime[i*primes[j]] = False
-            if i % primes[j] == 0:
-                break
-    return primes
+                except:
 
-primes = euler_sieve(20000)
-for p in primes:
-    print(p, end="|")
+                    res.append(None)
+
+                if not any(res):
+
+                    print ("拨号中") #dai:宽带连接名称,gb39301:账号,111111:密码
+
+                    os.popen("rasphone.exe")
+                    num1+=1
+
+                else:
+
+                    print ("network is ok" )
+
+                time.sleep(1)
+                if num1 == 10:
+                    print ("try reconect 10 ago ,error")
+                    break
+if __name__ == '__main__':
+    p=dailog(60)
+    p.check()
+
